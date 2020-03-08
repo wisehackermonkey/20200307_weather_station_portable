@@ -13,10 +13,15 @@ class TempatureSensor
 {
   public:
     TempatureSensor(int pin);
-    void read();
+    bool update();
+    int read();
+    bool isUpdated();
   private:
+    void _update();
     int _pin;
-//    int tempature_val;
+    int temp;
+    bool updated;
+    SimpleDHT11 tempsensor;
 };
 
 #endif
