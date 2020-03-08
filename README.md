@@ -10,3 +10,13 @@ parts list
 - time > more
 
 
+
+
+Setting up adafruit feather 
+add to arduino's package manager
+https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
+
+
+
+adalogger pinout diagram
+![](adalogger.png)
