@@ -22,7 +22,7 @@ void loop() {
 
 
   Serial.print("A0 = "); Serial.println(analogRead(0));
-//  logger.sd_print("A0 = "); logger.sd_println((String)analogRead(0));
+  logger.sd_print("A0 = "); logger.sd_println((String)analogRead(0));
  digitalWrite(13, HIGH);
   delay(1000);
   digitalWrite(13, LOW);

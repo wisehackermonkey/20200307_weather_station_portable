@@ -17,10 +17,11 @@ Logger::Logger(String filename, int _SD_CARD_SELECT_PIN, int _SD_CARD_WRITE_LED)
   SD_CARD_WRITE_LED  = _SD_CARD_WRITE_LED;
 
   pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN,LOW);
 //
 //
 //  // see if the card is present and can be initialized:
-  if (!SD.begin(SD_CARD_SELECT_PIN)) {
+  if (!SD.begin(_SD_CARD_SELECT_PIN)) {
     Serial.println("Card init. failed!");
     Serial.println("Has a sd card been inserted?");
 //    error(SD_CARD_ERROR_CODE_FAILED_INIT);
@@ -30,7 +31,7 @@ Logger::Logger(String filename, int _SD_CARD_SELECT_PIN, int _SD_CARD_WRITE_LED)
 //  create_file(filename);
 //
 //  pinMode(LED_PIN, OUTPUT);
-//  pinMode(SD_CARD_WRITE_LED, OUTPUT);
+  pinMode(_SD_CARD_WRITE_LED, OUTPUT);
 //  Serial.println("Ready!");
 }
 
@@ -62,7 +63,7 @@ void Logger::create_file(String _filename) {
   if ( ! logfile ) {
     Serial.print("Couldnt create ");
     Serial.println(filename);
-    error(SD_CARD_ERROR_CODE_CANT_CREATE_FILE);
+//    error(SD_CARD_ERROR_CODE_CANT_CREATE_FILE);
   }
   Serial.print("Writing to ");
   Serial.println(filename);
