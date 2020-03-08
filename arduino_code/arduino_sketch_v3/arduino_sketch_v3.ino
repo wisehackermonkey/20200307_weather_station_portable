@@ -1,4 +1,6 @@
-#include <SimpleDHT.h>
+//#include <SimpleDHT.h>
+#include "TempatureSensor.h"
+
 //arduino
 // for DHT11,
 //      VCC: 5V or 3V
@@ -14,11 +16,12 @@ int pinDHT11 = 5;
 SimpleDHT11 dht11;
 
 int tempature_val = -9000;
+TempatureSensor sensor(pinDHT11);//uses pin 5
 
 void setup() {
   Serial.begin(9600);
   Serial.println("=================================");
-  Serial.println("Sample DHT11...");
+  Serial.println("Reading from temp sensor DHT11...");
   Serial.println("=================================");
 
 }
