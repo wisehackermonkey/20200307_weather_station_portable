@@ -30,7 +30,7 @@ void loop() {
 //    Serial.print("");
 //    return;
 //  }
-s
+
   Serial.print("\nTempature, Humitity: ");
   Serial.print(read_tempature()); Serial.print(" *C, ");
 //  Serial.print((int)humidity); Serial.print(" %");
