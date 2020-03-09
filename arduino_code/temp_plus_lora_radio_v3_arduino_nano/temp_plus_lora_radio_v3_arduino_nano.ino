@@ -1,3 +1,16 @@
+//Temperature and radio sending sketch
+//by oran c
+//20200308
+
+//this sketch goes on the sending arduino (nano in my case),
+//which has attached a DHT11 temperature&humidity sensor, and a lora RFM9x radio 
+//module from adafruit.com
+//
+//This sketch read the DHT11 temperature module and sends the value
+//over the lora RFM9x radio as two numbers repersenting temperature in degrees Celcius 
+
+
+//original sketch notes
 // LoRa 9x_TX
 // -*- mode: C++ -*-
 // Example sketch showing how to create a simple messaging client (transmitter)
@@ -6,33 +19,31 @@
 // level messaging abilities.
 // It is designed to work with the other example LoRa9x_RX
 
+
+
 #include <SPI.h>
 #include <RH_RF95.h>
+#include "TempatureSensor.h"
 
-#define RFM95_CS 9
-#define RFM95_RST 6
-#define RFM95_INT 10
-//OLD pinout
-//----------------------------
-// 13 - SCK
-// 12 - MISO
-// 11 - MOSI
-// 10 - G0
-// 09 - CS
-// 06 - RST
-// 05 - USED by humidiy sensor
-//----------------------------
+#define RFM95_CS 4
+#define RFM95_INT 3
+#define RFM95_RST 2
+
+//aarduino pinout for the DHT11,
+//      VCC: 5V or 3V
+//      GND: GND
+//      DATA: pin 5
 
 //Current pinout
 //----------------------------
-//SCK - SCK
-//MISO - MISO
-//MOSI - MOSI
-// 12 - +LED indecator
-// 10 - G0 (INT a interrupt pin)
-// 09 - CS
-// 06 - RST
+// 13 - SCK (RFM9x)
+// 12 - MISO (RFM9x)
+// 11 - MOSI (RFM9x)
+// 06 - LED (+) indecator (used for flashing codes)
 // 05 - USED by humidiy sensor
+// 04 - CS (RFM9x)
+// 03 - G0 (RFM95_INT is a interrupt pin) (RFM9x)
+// 02 - RST (RFM9x)
 //----------------------------
 
 // Change to 434.0 or other frequency, must match RX's freq!
@@ -41,7 +52,14 @@
 // Singleton instance of the radio driver
 RH_RF95 rf95(RFM95_CS, RFM95_INT);
 
-int LED_PIN = 12;
+int LED_PIN = 6;
+int pinDHT11 = 5;//used with the temperature sensor
+
+
+
+//notes the DHT11 temperature sensor only reads every 1 second
+//sampling rate is 1HZ.
+TempatureSensor sensor(pinDHT11);
 void setup()
 {
 
@@ -50,11 +68,11 @@ void setup()
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
 
-  //  while (!Serial);
   Serial.begin(9600);
   delay(100);
 
-  Serial.println("Arduino LoRa TX Test!");
+  Serial.println("Temperature Sensor Radio: SEND");
+  Serial.println("Starting up Lora RFM9x radio");
 
   // manual reset
   digitalWrite(RFM95_RST, LOW);
@@ -83,32 +101,27 @@ void setup()
   rf95.setTxPower(23, false);
 }
 
-int16_t packetnum = 0;  // packet counter, we increment per xmission
+int16_t packetnum = 99;  // packet counter, we increment per xmission
 
 void loop()
 {
-  //  Serial.println("Sending to rf95_server");
-  // Send a message to rf95_server
+  if (sensor.update()) {
+    int temp = sensor.read(); 
 
-  char radiopacket[20] = "70  100            ";
-  itoa(packetnum++, radiopacket + 4, 10);
-  //  Serial.print("Sending ");
-  radiopacket[0] = '7';
-  radiopacket[1] = '0';
-  blink_code(2);
-  Serial.print("Sending:"); Serial.println(radiopacket);
-  delay(10);
-  rf95.send((uint8_t *)radiopacket, 20);
+    const int PACKET_LENGTH = 20;
+    char radiopacket[PACKET_LENGTH] = "70  100            ";
+    itoa(temp, radiopacket, 10);
 
-  Serial.print("."); delay(10);
-  rf95.waitPacketSent();
-  // Now wait for a reply
-  uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
-  uint8_t len = sizeof(buf);
+    blink_code(2);
+    Serial.println();
+    Serial.print("Sending: "); Serial.println(radiopacket);
+    delay(10);
+    rf95.send((uint8_t *)radiopacket, 20);
 
-  Serial.println("_"); delay(10);
-
-  delay(2000);
+    delay(10);
+    rf95.waitPacketSent();
+    delay(2000);
+  }
 }
 
 

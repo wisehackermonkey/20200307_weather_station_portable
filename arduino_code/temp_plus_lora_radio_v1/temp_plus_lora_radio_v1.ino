@@ -8,6 +8,18 @@
 
 #include <SPI.h>
 #include <RH_RF95.h>
+#include "TempatureSensor.h"
+//arduino
+// for DHT11,
+//      VCC: 5V or 3V
+//      GND: GND
+//      DATA: 2
+
+//use with adafruit adalogger
+// for DHT11,
+//      VCC: 3.3V or 3V
+//      GND: GND
+//      DATA: 5
 
 #define RFM95_CS 9
 #define RFM95_RST 6
@@ -42,6 +54,33 @@
 RH_RF95 rf95(RFM95_CS, RFM95_INT);
 
 int LED_PIN = 12;
+int pinDHT11 = 5;//used with the temperature sensor
+
+
+char * set_packet_message(String message, int packet_length) {
+  if (message.length() > packet_length) {
+    blink_code(6);
+    Serial.print("Error: message is larger than packet size. must be under : in size");
+    Serial.print(packet_length);
+    Serial.print("in size");
+    return "error";
+  } else {
+    const int PACKET_LENGTH = packet_length;
+    char radiopacket[PACKET_LENGTH] = "70  100            ";
+    //    itoa(packetnum++, radiopacket + 4, 10);
+    //  Serial.print("Sending ");
+    String message = "70";
+    for (int i = 0; i < message.length() - 1; i++) {
+      radiopacket[i] = message[i];
+    }
+    radiopacket[message.length()] = '\0';
+    return radiopacket;
+  }
+}
+
+// DHT11 sampling rate is 1HZ.
+
+TempatureSensor sensor(pinDHT11);
 void setup()
 {
 
@@ -83,32 +122,38 @@ void setup()
   rf95.setTxPower(23, false);
 }
 
-int16_t packetnum = 0;  // packet counter, we increment per xmission
+int16_t packetnum = 99;  // packet counter, we increment per xmission
 
 void loop()
 {
-  //  Serial.println("Sending to rf95_server");
-  // Send a message to rf95_server
+  if (sensor.update()) {
+    int temp = sensor.read(); 
 
-  char radiopacket[20] = "70  100            ";
-  itoa(packetnum++, radiopacket + 4, 10);
-  //  Serial.print("Sending ");
-  radiopacket[0] = '7';
-  radiopacket[1] = '0';
-  blink_code(2);
-  Serial.print("Sending:"); Serial.println(radiopacket);
-  delay(10);
-  rf95.send((uint8_t *)radiopacket, 20);
+    const int PACKET_LENGTH = 20;
+    char radiopacket[PACKET_LENGTH] = "70  100            ";
+    itoa(temp, radiopacket, 10);
+    //  Serial.print("Sending ");
+//    String message = "70";
+//    for (int i = 0; i <= message.length() - 1; i++) {
+//      radiopacket[i] = message[i];
+//    }
 
-  Serial.print("."); delay(10);
-  rf95.waitPacketSent();
-  // Now wait for a reply
-  uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
-  uint8_t len = sizeof(buf);
+    blink_code(2);
+    Serial.print("Sending: "); Serial.println(radiopacket);
+    delay(10);
+    rf95.send((uint8_t *)radiopacket, 20);
 
-  Serial.println("_"); delay(10);
+    //  Serial.print(".");
+    delay(10);
+    rf95.waitPacketSent();
+    // Now wait for a reply
+    //  uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
+    //  uint8_t len = sizeof(buf);
 
-  delay(2000);
+    //  Serial.println("."); delay(10);
+
+    delay(2000);
+  }
 }
 
 

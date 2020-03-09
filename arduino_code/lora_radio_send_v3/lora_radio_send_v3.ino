@@ -1,37 +1,52 @@
-// Arduino9x_RX
+// LoRa 9x_TX
 // -*- mode: C++ -*-
-// Example sketch showing how to create a simple messaging client (receiver)
+// Example sketch showing how to create a simple messaging client (transmitter)
 // with the RH_RF95 class. RH_RF95 class does not provide for addressing or
 // reliability, so you should only use RH_RF95 if you do not need the higher
 // level messaging abilities.
-// It is designed to work with the other example Arduino9x_TX
+// It is designed to work with the other example LoRa9x_RX
 
 #include <SPI.h>
 #include <RH_RF95.h>
 
-#define RFM95_CS 10
-#define RFM95_RST 9
-#define RFM95_INT 2
+#define RFM95_CS 9
+#define RFM95_RST 6
+#define RFM95_INT 10
+//OLD pinout
+//----------------------------
+// 13 - SCK
+// 12 - MISO
+// 11 - MOSI
+// 10 - G0
+// 09 - CS
+// 06 - RST
+// 05 - USED by humidiy sensor
+//----------------------------
+
+//Current pinout
+//----------------------------
+//SCK - SCK
+//MISO - MISO
+//MOSI - MOSI
+// 12 - +LED indecator
+// 10 - G0 (INT a interrupt pin)
+// 09 - CS
+// 06 - RST
+// 05 - USED by humidiy sensor
+//----------------------------
 
 // Change to 434.0 or other frequency, must match RX's freq!
-//changed the frequency to lower on both scripts
 #define RF95_FREQ 915.0
 
 // Singleton instance of the radio driver
 RH_RF95 rf95(RFM95_CS, RFM95_INT);
 
-////the reply message
-//uint8_t data[] = "Temperature 75f";
-
-// Blinky on receipt
-#define LED 13
-int LED_PIN = 6;
-
+int LED_PIN = 12;
 void setup()
 {
+
   pinMode(LED_PIN, OUTPUT);
   blink_code(4);
-  pinMode(LED, OUTPUT);
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
 
@@ -39,7 +54,7 @@ void setup()
   Serial.begin(9600);
   delay(100);
 
-  Serial.println("Arduino LoRa RX Test!");
+  Serial.println("Arduino LoRa TX Test!");
 
   // manual reset
   digitalWrite(RFM95_RST, LOW);
@@ -68,30 +83,34 @@ void setup()
   rf95.setTxPower(23, false);
 }
 
+int16_t packetnum = 99;  // packet counter, we increment per xmission
+
 void loop()
 {
-  if (rf95.available())
-  {
-    // Should be a message for us now
-    uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
-    uint8_t len = sizeof(buf);
+  //  Serial.println("Sending to rf95_server");
+  // Send a message to rf95_server
 
-    if (rf95.recv(buf, &len))
-    {
-      blink_code(2);
-      //looks like
-      //"Recieved (-37 db): <message here>"
-      Serial.print("Recieved (");
-      Serial.print(rf95.lastRssi(), DEC);
-      Serial.print("db): ");
-      Serial.println((char*)buf);
+  char radiopacket[20] = "70  100            ";
+  itoa(packetnum++, radiopacket + 4, 10);
+  //  Serial.print("Sending ");
+  radiopacket[0] = '7';
+  radiopacket[1] = '0';
+  
+  blink_code(2);
+  Serial.print("Sending: "); Serial.println(radiopacket);
+  delay(10);
+  rf95.send((uint8_t *)radiopacket, 20);
 
-    }
-    else
-    {
-      Serial.println("Receive failed");
-    }
-  }
+  //  Serial.print(".");
+  delay(10);
+  rf95.waitPacketSent();
+  // Now wait for a reply
+  uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
+  uint8_t len = sizeof(buf);
+
+  //  Serial.println("."); delay(10);
+
+  delay(2000);
 }
 
 
