@@ -5,6 +5,7 @@ import csv
 
 # %%
 from time import sleep
+from datetime import datetime
 import serial
 import platform
 import json
@@ -16,6 +17,7 @@ import pathlib
 # add "export PHONE_NUMBER='<phone_number>'" to bashrc
 
 CSV_PATH = pathlib.Path.cwd() /"temp_data_v1.csv"
+CSV_PATH = str(CSV_PATH)
 
 PLATFORM = platform.system()
 if PLATFORM == "Windows":
@@ -51,7 +53,7 @@ try:
                 #write temp values to a file
                 with open(CSV_PATH,"a+") as f:
                     writer = csv.writer(f,delimiter=",")
-                    writer.writerow([time.time(),temp_val])
+                    writer.writerow([datetime.now().strftime("%Y%m%d %H:%M:%S"),temp_val])
 except KeyboardInterrupt:
     print("Closing program...")
 
