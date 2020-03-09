@@ -23,7 +23,7 @@ if PLATFORM == "Windows":
     for p in list(serial.tools.list_ports.comports()):
         if "Arduino" in p.description:
             COM_PORT = str(p.device)
-elif pathlib == 'Linux':
+elif PLATFORM == 'Linux':
     COM_PORT = ""
     for p in list(serial.tools.list_ports.comports()):
         if "Arduino" in p.manufacturer:
