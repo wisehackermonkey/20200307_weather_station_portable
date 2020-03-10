@@ -15,6 +15,10 @@ parts list
 - free time  
 
 ----
+## Getting started 
+download the repo. 
+flash the Arduino sketch on both the receiver and arduinos. 
+`trails off....` this  project is for fun and im recording this here just for show and tell, if you take the challenge of running my code, please just email me if you get any questions.
 
 <!-- - read from humidity sensor > save to sd card -->
 <!-- 
