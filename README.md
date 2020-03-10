@@ -16,18 +16,18 @@ parts list
 
 ----
 
-- read from humidity sensor > save to sd card
-
+<!-- - read from humidity sensor > save to sd card -->
+<!-- 
 Setting up adafruit feather [not no longer used in project!]
 (add to arduino's package manager)
-https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
+https://adafruit.github.io/arduino-board-index/package_adafruit_index.json -->
 
-
+<!-- 
 how to use sd card with adafruit adalogger
-https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card?embeds=allow
+https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card?embeds=allow -->
 
-adalogger pinout diagram
-![](adalogger.png)
+Arduino nano pinout diagram
+![](arduino_nano_pinout_diagram.png)
 ## Hardware
 Here's the final build.
 pictured is a adafruit
