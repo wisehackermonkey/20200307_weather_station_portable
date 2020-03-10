@@ -41,6 +41,8 @@ pictured is a adafruit
 ## Results
 Pictured bellow is temperature readings from the weather station outside my house over 1 day and night. notice how the high point around 45c (mesured in celcius) corrisponds to the day and the nigh time is low with 5c. the data is skused because the weather station was on top of a barbicue and thouse got hotter then the abent temperature outside (oh well face emoji). 
 ![](ploted_temperature_point_from_weather_station_20200308-09.jpg)
+With a 2200mAh battery my project lasted 1.1857 days on one charge! I was expecting at most 6 hours tops, im really impressed with the low mA's that everything is using.
+![](battery_total_running_length_calculations.jpg)
 
 -----
 ## More photos
