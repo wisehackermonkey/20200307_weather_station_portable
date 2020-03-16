@@ -147,6 +147,13 @@ With a 2200mAh battery my project lasted 1.1857 days on one charge! I was expect
 ![](photos/water_sensor_v5.jpg)
 
 ----------------------------
+
+### My raspbery pi speciafic notes:
+```
+>cd ~/github/20200307_weather_station_portable && git pull && cd ./python_scripts/ && python3 ./serial_to_csv.py
+>nohup python3 ./python_scripts/serial_to_csv.py  &
+```
+----------------------------
 Written by oran collins
 oranbusiness@gmail.com
 github.com/wisehackermonkey
