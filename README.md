@@ -69,6 +69,25 @@ sensor | arduino uno/nano
 A2 - water sensor (read)
 ```
 ----------------------------
+## Installing/running pyserial python server
+#### works on raspberry pi and windows, it might work with mac not fully tested, please email me if  you get it working! :)
+
+```
+cd path/path/to/github/repo
+pip install -r requirements.txt
+```
+or 
+```
+pip install pyserial
+```
+
+####Run the server
+Note: plug in the second receiving arduino before running the server
+```
+>cd path/path/to/github/repo
+>python .\python_scripts\serial_to_csv.py 
+```
+----------------------------
 
 ## Hardware
 Here's the final build.
