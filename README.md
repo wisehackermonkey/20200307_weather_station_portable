@@ -74,17 +74,23 @@ A2 - water sensor (read)
 
 ```
 cd path/path/to/github/repo
-pip install -r requirements.txt
+>pip install -r requirements.txt
+
+(linux)
+>pip3 install -r requirements.txt
 ```
 or 
 ```
-pip install pyserial
+>pip install pyserial
 ```
 
 #### Run the server
 Note: plug in the second receiving arduino before running the server
 ```
+>git clone https://github.com/wisehackermonkey/20200307_weather_station_portable.git
 >cd path/path/to/github/repo
+or
+>cd ./20200307_weather_station_portable
 >python .\python_scripts\serial_to_csv.py 
 ```
 
@@ -93,7 +99,7 @@ Note: plug in the second receiving arduino before running the server
 (python3 windows)
 nohup python .\python_scripts\serial_to_csv.py  &
 or (linux)
-nohup python3 .\python_scripts\serial_to_csv.py  &
+nohup python3 ./python_scripts/serial_to_csv.py  &
 
 ```
 
