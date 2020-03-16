@@ -81,12 +81,22 @@ or
 pip install pyserial
 ```
 
-####Run the server
+#### Run the server
 Note: plug in the second receiving arduino before running the server
 ```
 >cd path/path/to/github/repo
 >python .\python_scripts\serial_to_csv.py 
 ```
+
+#### run in background
+```
+(python3 windows)
+nohup python .\python_scripts\serial_to_csv.py  &
+or (linux)
+nohup python3 .\python_scripts\serial_to_csv.py  &
+
+```
+
 ----------------------------
 
 ## Hardware

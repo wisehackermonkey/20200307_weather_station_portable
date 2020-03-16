@@ -1,4 +1,3 @@
-
 try:
     import serial
 
@@ -45,7 +44,7 @@ try:
                 while True:
                     raw_temp = ser.readline().decode("utf-8").strip() #decode byte string from arduino and strip return characters
                     print(raw_temp)
-                    split_row = raw_temp.split(":")# second value in array is the temp
+                    split_row = raw_temp.split(",")# second value in array is the temp
 
                     if len(split_row) > 1:
                         temp_val = split_row[1]
@@ -61,7 +60,8 @@ try:
         print("I'm having trouble connecting to the Arduino")
         print("Try plugging the arduino in to the computers usb port")
 
-except ModuleNotFoundError:
+except Exception:
+
     print("""
 ----------------------
 Error!! 
