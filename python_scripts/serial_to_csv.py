@@ -1,6 +1,6 @@
 try:
     import serial
-
+    import re 
     # %%
 
     from time import sleep
@@ -10,6 +10,9 @@ try:
     import pathlib
     # add "export PHONE_NUMBER='<phone_number>'" to bashrc
 
+    def num_there(s):
+        return any(i.isdigit() for i in s)
+    
     CSV_PATH = pathlib.Path.cwd() /"temp_data_v1.csv"
     CSV_PATH = str(CSV_PATH)
 
@@ -41,16 +44,21 @@ try:
                 while True:
                     raw_temp = ser.readline().decode("utf-8").strip() #decode byte string from arduino and strip return characters
                     print(raw_temp)
-                    split_row = raw_temp.split(",")# second value in array is the temp
 
-                    if len(split_row) > 1:
-                        temp_val = split_row[1]
-                        print(temp_val)
+                    # throw away any lines that don't have numbers and ","
+                    # regex explanation 
+                    # https://regex101.com/r/yK6oF4/1
+                    if re.match('^[0-9,.]*$', raw_temp):
+                        split_row = raw_temp.split(",")# second value in array is the temp
 
-                        #write temp values to a file
-                        with open(CSV_PATH,"a+") as f:
-                            writer = csv.writer(f,delimiter=",")
-                            writer.writerow([datetime.now().strftime("%Y%m%d %H:%M:%S"),temp_val])
+                        if len(split_row) > 1:
+                            temp_val = split_row[1]
+                            print(temp_val)
+
+                            #write temp values to a file
+                            with open(CSV_PATH,"a+") as f:
+                                writer = csv.writer(f,delimiter=",")
+                                writer.writerow([datetime.now().strftime("%Y%m%d %H:%M:%S"),temp_val])
         except KeyboardInterrupt:
             print("Closing program...")
     except serial.serialutil.SerialException:
