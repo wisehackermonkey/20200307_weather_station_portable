@@ -1,3 +1,11 @@
+//water sensor level library 
+// by oran collins
+// 20200315
+
+//simple water sensor reading library
+//basically a wrapper for analogRead(A0) 
+//where A0 is the pin used by the water sensor 
+//connected to the arduino
 
 #include "Arduino.h"
 #include "WaterSensor.h"

@@ -1,6 +1,12 @@
+//water sensor level library 
+// by oran collins
+// 20200315
 
-// WaterSensor wrapper for reading a water sensor off of 
-// a analog pin on the arduino
+//simple water sensor reading library
+//basically a wrapper for analogRead(A0) 
+//where A0 is the analog pin zero used by the water sensor 
+//connected to the arduino
+
 // Created by Oran C, 2020/03/07 
 // Released into the public domain.
 

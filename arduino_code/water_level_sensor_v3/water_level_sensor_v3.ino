@@ -1,11 +1,12 @@
-//www.elegoo.com
-//2016.12.9
-//modified by oran collins
+//water sensor level library example
+// by oran collins
 // 20200315
-//mesure the level of water from the elegoo water sensor
+// mesure the level of water from the elegoo water sensor
 
 //simple water sensor reading library
-//basically a wrapper for analogRead(A0)
+//basically a wrapper for analogRead(A0) 
+//where A0 is the pin used by the water sensor 
+//connected to the arduino
 #include "WaterSensor.h"
 
 //pinout
@@ -31,8 +32,8 @@ void loop()
   {
 
     // sprintf(printBuffer, "ADC level is %d\n", watersensor.read());
-        Serial.println(watersensor.read());
-
+    Serial.println(watersensor.read());
+    //if you need a character array version of the number
     Serial.println(watersensor.toCharArray());
   }
 }
