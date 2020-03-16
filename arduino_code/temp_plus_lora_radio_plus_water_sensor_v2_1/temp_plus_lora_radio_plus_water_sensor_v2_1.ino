@@ -32,7 +32,7 @@
 #define RFM95_INT 3
 #define RFM95_RST 2
 
-//aarduino pinout for the DHT11,
+//arduino pinout for the DHT11,
 //      VCC: 5V or 3V
 //      GND: GND
 //      DATA: pin 5
