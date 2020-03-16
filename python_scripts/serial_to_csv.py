@@ -52,13 +52,14 @@ try:
                         split_row = raw_temp.split(",")# second value in array is the temp
 
                         if len(split_row) > 1:
-                            temp_val = split_row[1]
-                            print(temp_val)
+                            print(split_row)
 
                             #write temp values to a file
                             with open(CSV_PATH,"a+") as f:
                                 writer = csv.writer(f,delimiter=",")
-                                writer.writerow([datetime.now().strftime("%Y%m%d %H:%M:%S"),temp_val])
+                                row = [datetime.now().strftime("%Y%m%d %H:%M:%S")]
+                                row.extend(split_row)
+                                writer.writerow(row)
         except KeyboardInterrupt:
             print("Closing program...")
     except serial.serialutil.SerialException:
