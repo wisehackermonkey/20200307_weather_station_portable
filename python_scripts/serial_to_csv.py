@@ -52,7 +52,7 @@ try:
                         split_row = raw_temp.split(",")# second value in array is the temp
 
                         if len(split_row) > 1:
-                            print(split_row)
+                            # print(split_row)
 
                             #write temp values to a file
                             with open(CSV_PATH,"a+") as f:
