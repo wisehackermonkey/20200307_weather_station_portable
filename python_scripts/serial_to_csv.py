@@ -60,9 +60,11 @@ try:
         print("I'm having trouble connecting to the Arduino")
         print("Try plugging the arduino in to the computers usb port")
 
-except Exception:
+except Exception as e:
+    print("\n\n\n")
 
-    print("""
+    print(e)
+    print(""" 
 ----------------------
 Error!! 
 ----------------------
