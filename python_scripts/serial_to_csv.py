@@ -2,13 +2,10 @@ try:
     import serial
 
     # %%
+
     from time import sleep
     from datetime import datetime
-    import serial
-    import platform
-    import json
-    import os
-    import serial
+    import serial, platform, json, os, csv, pathlib
     import serial.tools.list_ports
     import pathlib
     # add "export PHONE_NUMBER='<phone_number>'" to bashrc
