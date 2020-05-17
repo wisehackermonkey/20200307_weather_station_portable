@@ -1,8 +1,9 @@
 # Portable wather station
-
-### Written&coded by oran collins
-### oranbusiness@gmail.com
-### github.com/wisehackermonkey
+```
+Written&coded by oran collins
+oranbusiness@gmail.com
+github.com/wisehackermonkey
+```
 ![](photos/20200309_weather_station_project_box.jpg)
 
 parts list
