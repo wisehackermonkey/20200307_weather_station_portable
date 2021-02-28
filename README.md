@@ -1,22 +1,24 @@
 # Portable wather station
-```
-Written&coded by oran collins
+```text
+Written & coded by oran collins
 oranbusiness@gmail.com
 github.com/wisehackermonkey
 ```
 ![](photos/20200309_weather_station_project_box.jpg)
 
-parts list
-- Arduino nano (or uno) x1
-- [humidity sensor x1](https://www.amazon.com/Temperature-Humidity-Digital-3-3V-5V-Raspberry/dp/B07WT2HJ4F/ref=sr_1_2?keywords=dh11+humidity+sensor&qid=1583824327&sr=8-2)
-- led x2
-- [adafruit RFM9X Lora 915hrz radio](https://www.adafruit.com/product/3072) 
-- [adafruit PowerBoost 1000 Charger | its a Rechargeable 5V Lipo USB Boost @ 1A - 1000](https://www.adafruit.com/product/2465)
-- [Lithium Ion Cylindrical Battery - 3.7v 2200mAh](https://www.adafruit.com/product/1781)
--  AND! 
-- most importanly
-- 
-- free time  
+# parts list
+| Num | Item | link |
+|---|---|--|
+| x1 | Arduino nano (or uno)  |
+| x1 | [humidity sensor ](https://www.amazon.com/Temperature-Humidity-Digital-3-3V-5V-Raspberry/dp/B07WT2HJ4F/ref=sr_1_2?keywords=dh11+humidity+sensor&qid=1583824327&sr=8-2) |
+| x2 | led |
+| x2 | [adafruit RFM9X Lora 915hrz radio](https://www.adafruit.com/product/3072)  |
+| [adafruit PowerBoost 1000 Charger | its a Rechargeable 5V Lipo USB Boost @ 1A | 1000](https://www.adafruit.com/product/2465) |
+| 1x | [Lithium Ion Cylindrical Battery | 3.7v 2200mAh](https://www.adafruit.com/product/1781) |
+| 2x | long range 433 hrz lora antenna  |
+| 1x | project box (weather proof) |
+| 1x |  Nokia 5110 Graphic LCD Display | [More info In-Depth: Interface Nokia 5110 Graphic LCD Display with Arduino](https://lastminuteengineers.com/nokia-5110-lcd-arduino-tutorial/)
+| <9000x | (sarcastic voice)  AND! most importantly... free time!   |
 
 ----
 ## Getting started 
