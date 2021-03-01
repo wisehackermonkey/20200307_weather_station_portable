@@ -15,7 +15,7 @@ github.com/wisehackermonkey
 | x2 | [adafruit RFM9X Lora 915hrz radio](https://www.adafruit.com/product/3072)  |
 | [adafruit PowerBoost 1000 Charger | its a Rechargeable 5V Lipo USB Boost @ 1A | 1000](https://www.adafruit.com/product/2465) |
 | 1x | [Lithium Ion Cylindrical Battery | 3.7v 2200mAh](https://www.adafruit.com/product/1781) |
-| 2x | long range 433 hrz lora antenna  |
+| 2x | long range 915 MHz lora antenna  | [Adafruit RFM69HCW Transceiver Radio Breakout - 868 or 915 MHz [RadioFruit] ID: 3070 - $9.95 : Adafruit Industries, Unique & fun DIY electronics and kits](https://www.adafruit.com/product/3070) |
 | 1x | project box (weather proof) |
 | 1x |  Nokia 5110 Graphic LCD Display | [More info In-Depth: Interface Nokia 5110 Graphic LCD Display with Arduino](https://lastminuteengineers.com/nokia-5110-lcd-arduino-tutorial/)
 | <9000x | (sarcastic voice)  AND! most importantly... free time!   |
@@ -132,6 +132,16 @@ With a 2200mAh battery my project lasted 1.1857 days on one charge! I was expect
 ### added water detection sensor
 #### (water sensor is the red flat board sticking out, below the blue led)
 ![](photos/water_sensor_v6.jpg)
+
+# Circuit Diagram
+![](docs/circuit_diagram_client_v1_bb.png)
+# how to connect Adafruit RFM95W
+![](assets/2021-02-28-09-18-14.png)
+
+------
+
+### [Adafruit RFM69HCW and RFM9X LoRa Packet Radio Breakouts](https://learn.adafruit.com/adafruit-rfm69hcw-and-rfm96-rfm95-rfm98-lora-packet-padio-breakouts?view=all)
+### [Adafruit RFM96W LoRa Radio Transceiver Breakout - 433 MHz [RadioFruit] ID: 3073 - $19.95 : Adafruit Industries, Unique & fun DIY electronics and kits](https://www.adafruit.com/product/3073)
 
 --------------
 ## Photos from the water sensor Elegoo Tutorial

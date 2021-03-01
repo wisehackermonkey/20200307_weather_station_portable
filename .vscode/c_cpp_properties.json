@@ -1,17 +1,65 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "PlatformIO",
             "includePath": [
-                "C:\\Users\\oranm\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\samd\\1.5.11\\**"
+                "c:/Users/oranm/github/20200307_weather_station_portable/include",
+                "c:/Users/oranm/github/20200307_weather_station_portable/src",
+                "c:/Users/oranm/github/20200307_weather_station_portable/lib/lcd/src",
+                "c:/Users/oranm/github/20200307_weather_station_portable/.pio/libdeps/uno/Adafruit PCD8544 Nokia 5110 LCD library",
+                "c:/Users/oranm/github/20200307_weather_station_portable/.pio/libdeps/uno/Adafruit GFX Library",
+                "c:/Users/oranm/github/20200307_weather_station_portable/.pio/libdeps/uno/Adafruit BusIO",
+                "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "C:/Users/oranm/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/oranm/.platformio/packages/framework-arduino-avr/variants/standard",
+                "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "C:/Users/oranm/.platformio/packages/tool-unity",
+                ""
             ],
-            "forcedInclude": [
-                "C:\\Users\\oranm\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\samd\\1.5.11\\cores\\arduino\\Arduino.h"
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "c:/Users/oranm/github/20200307_weather_station_portable/include",
+                    "c:/Users/oranm/github/20200307_weather_station_portable/src",
+                    "c:/Users/oranm/github/20200307_weather_station_portable/lib/lcd/src",
+                    "c:/Users/oranm/github/20200307_weather_station_portable/.pio/libdeps/uno/Adafruit PCD8544 Nokia 5110 LCD library",
+                    "c:/Users/oranm/github/20200307_weather_station_portable/.pio/libdeps/uno/Adafruit GFX Library",
+                    "c:/Users/oranm/github/20200307_weather_station_portable/.pio/libdeps/uno/Adafruit BusIO",
+                    "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "C:/Users/oranm/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/oranm/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/oranm/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "C:/Users/oranm/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50100",
+                "ARDUINO_AVR_UNO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega328P__",
+                ""
             ],
-            "intelliSenseMode": "msvc-x64",
-            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64/cl.exe",
             "cStandard": "c11",
-            "cppStandard": "c++17"
+            "cppStandard": "c++11",
+            "compilerPath": "C:/Users/oranm/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
         }
     ],
     "version": 4
