@@ -1,0 +1,7 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "arduino_code\\lora_radio_send_v4_morgan_test_send.v1\\lora_radio_send_v4_morgan_test_send.v1.ino",
+    "port": "COM7",
+    "programmer": "AVR ISP",
+    "arduino.defaultBaudRate": 9600
+}

@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "lora_radio_listen_v4.ino",
+    "port": "COM7",
+    "programmer": "AVR ISP"
+}
