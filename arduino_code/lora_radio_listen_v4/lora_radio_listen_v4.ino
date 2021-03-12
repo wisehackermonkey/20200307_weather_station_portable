@@ -82,7 +82,7 @@ void loop()
     if (rf95.recv(buf, &len))
     {
             // blink_code(1);
-            blink_code(7,30);
+            blink_code(7,50);
       // blink_code(2);
       //looks like
 //      "Recieved (-37 db): <message here>"
@@ -94,7 +94,7 @@ void loop()
     }
     else
     {
-        blink_code(2,50);
+        blink_code(2,200);
       Serial.println("Receive failed");
     }
   }else{
