@@ -126,9 +126,9 @@ void blink_code(uint8_t errno) {
 
 void blink_code(uint8_t errno, int _delay) {
 
-  _blink_(errno,100);
+  _blink_(errno,_delay);
 
   for (uint8_t i = errno; i < 10; i++) {
-    delay(_delay);
+    delay(_delay*2);
   }
 }
