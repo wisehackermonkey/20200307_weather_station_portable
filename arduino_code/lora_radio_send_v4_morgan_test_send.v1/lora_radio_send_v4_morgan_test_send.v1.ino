@@ -117,14 +117,14 @@ void setup()
     rf95.setCodingRate4(5);
 }
 
-int16_t packetnum = 0; // packet counter, we increment per xmission
+int8_t packetnum = 0; // packet counter, we increment per xmission
 
 void loop()
 {
     //  Serial.println("Sending to rf95_server");
     // Send a message to rf95_server
-
-    char radiopacket[PACKET_LENGTH] = {173, 0, 0, 0, 255, 255, 255, 0, 6, 'o', 'r', 'a', 'n', 'i', 's', 'h', 'e', 'r', 'e', ' '};
+    packetnum+=1;
+    char radiopacket[PACKET_LENGTH] = {packetnum, 0, 0, 0, 'x', 'x', 'x', 0, 6, 'o', 'r', 'a', 'n', 'i', 's', 'h', 'e', 'r', 'e', ' '};
     /*
    {173, packet id 0-255 used to identify the packet and allow for retransmition
     0, unused can be anything between 0-255
@@ -141,23 +141,27 @@ void loop()
   */
 
     //increments the packet id (index 0), NOTE: , 10); means do it in base 10
-    // itoa(packetnum++, radiopacket+0, 10);
-    radiopacket[0] = radiopacket[0] + 1;
+    // itoa(packetnum++, radiopacket+5, 10);
+    // radiopacket[0] = radiopacket[0] + 1;
     blink_code(2);
     Serial.print("Sending: ");
+    
+
     for (int i = 0; i < PACKET_LENGTH; i += 1)
     {
-        if (i < 7)
-        {
-            // convert the fist 7 headers of the packet to numbers instead
-            // of unprintable char's
-            Serial.print(atoi(radiopacket[i]));
-        }
-        else
-        {
-            Serial.print(String(radiopacket[i]));
-        }
+        // if (i < 7)
+        // {
+        //     // convert the fist 7 headers of the packet to numbers instead
+        //     // of unprintable char's
+        //     Serial.print(radiopacket[i]);
+        // }
+        // else
+        // {
+            Serial.print((char)radiopacket[i]);
+        // }
+        Serial.print(" | ");
     }
+    Serial.println(",");
 
     Serial.println((String)radiopacket);
     delay(10);
@@ -174,8 +178,34 @@ void loop()
     //put content
     uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
     uint8_t len = sizeof(buf);
+        delay(1000);
 
-    delay(2000);
+    if (rf95.waitAvailableTimeout(3000))
+    {
+        // Should be a message for us now
+        uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
+        uint8_t len = sizeof(buf);
+
+        if (rf95.recv(buf, &len))
+        {
+            blink_code(2);
+            //looks like
+            //"Recieved (-37 db): <message here>"
+            Serial.print("Recieved : ");
+            // Serial.print(rf95.lastRssi(), DEC);
+            // Serial.print("db): ");
+            Serial.println((char *)buf);
+            blink_code(2);
+        }
+        else
+        {
+            Serial.println("Receive failed");
+        }
+    }else{
+        Serial.println("Radio not availble");
+        blink_code(3);
+    }
+    // delay(2000);
 }
 
 // blink out an error code

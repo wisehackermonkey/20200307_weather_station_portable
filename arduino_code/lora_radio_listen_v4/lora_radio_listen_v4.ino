@@ -26,10 +26,12 @@ RH_RF95 rf95(RFM95_CS, RFM95_INT);
 // Blinky on receipt
 #define LED 13
 int LED_PIN = 6;
+int LED_PIN2 = 3;
 
 void setup()
 {
   pinMode(LED_PIN, OUTPUT);
+  pinMode(LED_PIN2, OUTPUT);
   blink_code(4);
   pinMode(LED, OUTPUT);
   pinMode(RFM95_RST, OUTPUT);
@@ -65,7 +67,8 @@ void setup()
   // The default transmitter power is 13dBm, using PA_BOOST.
   // If you are using RFM95/96/97/98 modules which uses the PA_BOOST transmitter pin, then
   // you can set transmitter powers from 5 to 23 dBm:
-  rf95.setTxPower(23, false);
+//  rf95.setTxPower(23, false);
+  rf95.setTxPower(5, false);
 }
 
 void loop()
@@ -78,34 +81,54 @@ void loop()
 
     if (rf95.recv(buf, &len))
     {
-      blink_code(2);
+            // blink_code(1);
+            blink_code(7,30);
+      // blink_code(2);
       //looks like
-      //"Recieved (-37 db): <message here>"
-      // Serial.print("Recieved (");
-      // Serial.print(rf95.lastRssi(), DEC);
-      // Serial.print("db): ");
+//      "Recieved (-37 db): <message here>"
+       Serial.print("Recieved (");
+       Serial.print(rf95.lastRssi(), DEC);
+       Serial.print("db): ");
       Serial.println((char*)buf);
 
     }
     else
     {
+        blink_code(2,50);
       Serial.println("Receive failed");
     }
+  }else{
+    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(LED_PIN2, HIGH);
   }
+
 }
 
-
-// blink out an error code
-void blink_code(uint8_t errno) {
-
+void _blink_( uint8_t errno, int _delay){
   uint8_t i;
   for (i = 0; i < errno; i++) {
     digitalWrite(LED_PIN, HIGH);
-    delay(100);
+    digitalWrite(LED_PIN2, HIGH);
+    delay(_delay);
     digitalWrite(LED_PIN, LOW);
-    delay(100);
+    digitalWrite(LED_PIN2, LOW);
+    delay(_delay);
   }
-  for (i = errno; i < 10; i++) {
+}
+// blink out an error code
+void blink_code(uint8_t errno) {
+
+  _blink_(errno,100);
+  for (uint8_t i = errno; i < 10; i++) {
     delay(200);
+  }
+}
+
+void blink_code(uint8_t errno, int _delay) {
+
+  _blink_(errno,100);
+
+  for (uint8_t i = errno; i < 10; i++) {
+    delay(_delay);
   }
 }
