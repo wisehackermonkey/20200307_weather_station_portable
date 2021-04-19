@@ -73,35 +73,26 @@ A2 - water sensor (read)
 ## Installing/running pyserial python server
 #### works on raspberry pi and windows, it might work with mac not fully tested, please email me if  you get it working! :)
 
-```
-cd path/path/to/github/repo
->pip install -r requirements.txt
-
-(linux)
->pip3 install -r requirements.txt
-```
-or 
-```
->pip install pyserial
-```
-
 #### Run the server
 Note: plug in the second receiving arduino before running the server
 ```
->git clone https://github.com/wisehackermonkey/20200307_weather_station_portable.git
->cd path/path/to/github/repo
-or
->cd ./20200307_weather_station_portable
->python .\python_scripts\serial_to_csv.py 
+cd ~
+git clone https://github.com/wisehackermonkey/20200307_weather_station_portable.git
+cd ./20200307_weather_station_portable
+pip3 install -r requirements.txt
+python3 ./python_scripts/serial_to_csv.py 
+
 ```
 
 #### run in background
 ```
-(python3 windows)
-nohup python .\python_scripts\serial_to_csv.py  &
-or (linux)
+Simple:
 nohup python3 ./python_scripts/serial_to_csv.py  &
 
+Advanced:
+tmux
+python3 ./python_scripts/serial_to_csv.py &> logs.txt
+"ctrl + b" then 'd'
 ```
 
 ----------------------------

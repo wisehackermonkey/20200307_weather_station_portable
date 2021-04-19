@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+temp_data_v1.csv
+error.txt
+.gitignore
